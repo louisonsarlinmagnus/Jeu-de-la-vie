@@ -7,21 +7,13 @@ Surive: Une cellule survie si elle a 2 ou 3 voisines sinon elle meurt
 Nait: Un cellule nait si elle a exactement 3 voisines
 
 """
-#On demande la taille de la grille
+#On défini la taille de la grille
 taille=40
 k=0
 temp=0
 
-'''
-while type(taille)!=int or int(taille)<=0: #On exclue une grille de 0 par 0 cases et les entrées non entieres
-	try:
-		taille=int(input("Donnez une taille convenable pour la grille\n"))
-	except:
-		print("Ce n'est pas un entier")
-		ValueError
-'''
-
-def creerGrille(taille): #On creer une liste de liste constituant la grille
+#On creer une liste de liste constituant la grille
+def creerGrille(taille): 
 	G=[]	
 	
 	for i in range(taille):
@@ -31,7 +23,8 @@ def creerGrille(taille): #On creer une liste de liste constituant la grille
 			G[j].append(0)
 	return G
 
-def voisin(case,grille,taille): #On calcule le nombre de voisin d'une cellule donnee
+#On calcule le nombre de voisin d'une cellule donnee
+def voisin(case,grille,taille): 
 	ligne=int(case[0])
 	colonne=int(case[1])
 	voisin = 0
@@ -73,30 +66,8 @@ def voisin(case,grille,taille): #On calcule le nombre de voisin d'une cellule do
 				voisin+=1
 	return(voisin)#On revoi le nombre de voisin
 
-def grilleBeau(taille,grille): #Fonction bonus servant a afficher la grille de maniere propre en console
-    for i in range(taille):
-        #Déclaration des compteurs
-        k=0
-        p=0
-        #On régle le nombre de -
-        while k<taille*6+1: 
-            print('-',end='')
-            k=k+1
-        print()
-        print('| ',end='')
-        for j in range(taille):
-            #On rempli
-            print(grille[i][j],"| ", end='')
-        print()
-
-    #On régle le nombre de - a la fin
-    while p<taille*6+1: 
-        print('-',end='')
-        p=p+1   
-    print()
-    return grille
-
-def liveOrdies(): #On calcule a partir d'une grille les cellules qui meurent et celles qui vivent
+#On calcule a partir d'une grille les cellules qui meurent et celles qui vivent
+def liveOrdies(): 
 	global grille
 	global taille
 	newgrille=creerGrille(taille)
@@ -129,7 +100,8 @@ def liveOrdies(): #On calcule a partir d'une grille les cellules qui meurent et 
 				print("Il y a un soucis")
 	return(newgrille) #On revoie la grille vieilli d'une generation
 
-def remplirGrille(grille): #Fonction bonus servant a remplir en console la grille
+#Fonction bonus servant a remplir en console la grille
+def remplirGrille(grille): 
 	taille=len(grille[0])
 	print("Debut du remplissage de la grille\n")
 
@@ -143,14 +115,16 @@ grille=creerGrille(taille) #On initialise la grille
 
 taillePix=800
 
-def case(event): #On calcule les coordonnee d'une case a partir d'une action sur la fenetre
+#On calcule les coordonnee d'une case a partir d'une action sur la fenetre
+def case(event): 
 	global taille
 
 	ligne=event.x
 	colonne=event.y
 	return[event.x//(taillePix/taille),colonne//(taillePix/taille)]
 
-def leftClic(event): #Action declanchee lorsque l'on utilise le clic gauche sur la fenetre
+#Action declanchee lorsque l'on utilise le clic gauche sur la fenetre
+def leftClic(event):
 	try:
 		ligne=int(case(event)[0])
 		colonne=int(case(event)[1])
@@ -160,7 +134,8 @@ def leftClic(event): #Action declanchee lorsque l'on utilise le clic gauche sur 
 	except IndexError:
 		print("Une erreur est survenue, veuillez relancer le programme")
 
-def rightClic(event): #Action declanchee lorsque l'on utilise le clic droit sur la fenetre
+#Action declanchee lorsque l'on utilise le clic droit sur la fenetre
+def rightClic(event):
 	try:
 
 		ligne=int(case(event)[0])
@@ -170,18 +145,8 @@ def rightClic(event): #Action declanchee lorsque l'on utilise le clic droit sur 
 
 	except IndexError:
 		print("Une erreur est survenue, veuillez relancer le programme")
-'''
-def refreshColor(): #Fonction graphique qui colorie en vert les cellule vivantes et blanc les mortes
-	global grille, taille
 
-	for i in range(taille):
-		for j in range(taille):
-			if grille[j][i]==1:
-				tissus.create_rectangle(taillePix/taille*i,taillePix/taille*j,taillePix/taille*(i+1),taillePix/taille*(j+1),fill='green')
-			elif grille[j][i]==0:
-				tissus.create_rectangle(taillePix/taille*i,taillePix/taille*j,taillePix/taille*(i+1),taillePix/taille*(j+1),fill='white')
-	#print(str(grille)+'\n')
-'''
+
 def refreshColor():
 	global grille, taille
 	tissus.delete(fenetre,'tag1')
@@ -192,13 +157,15 @@ def refreshColor():
 			elif grille[j][i]==0:
 				tissus.create_rectangle(taillePix/taille*i,taillePix/taille*j,taillePix/taille*(i+1),taillePix/taille*(j+1),fill='white',tags='tag1')
 
-def tracerGrille(): #Fonction créant le quadrillage de la fenetre
+#Fonction créant le quadrillage de la fenetre
+def tracerGrille():
 	global taille
 	for i in range(taille):
 		for j in range(taille):
 			tissus.create_rectangle(taillePix/taille*i,taillePix/taille*j,taillePix/taille*(i+1),taillePix/taille*(j+1),fill='white',tags='tag1')
 
-def nextGrille(): #Lie au bouton elle appelle les fonction necessaire pour la grille suivante
+#Lie au bouton elle appelle les fonction necessaire pour la grille suivante
+def nextGrille(): 
 	global grille,k
 	k+=1
 	label1.configure(text="Generation  " + str(k))
@@ -222,8 +189,6 @@ def nextGrilleRepeat():
 		sleep(1)
 	else:
 		temp=0
-
-
 
 
 
