@@ -7,6 +7,7 @@ Ce programme est le fruit de plusieurs heures libres intelligemment employé en 
 - Réparer Suivant x20
 - Ajouter bouton toggle suivant
 - Choix positionnement des formes
+- Modification interaction avec les bords?
 
 ## Introduction
 

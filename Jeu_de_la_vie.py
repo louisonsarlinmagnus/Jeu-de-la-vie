@@ -5,12 +5,12 @@ from time import sleep
 Regles:
 Surive: Une cellule survie si elle a 2 ou 3 voisines sinon elle meurt
 Nait: Un cellule nait si elle a exactement 3 voisines
-
 """
+
 #On défini la taille de la grille
 taille=40
 k=0
-temp=0
+
 
 #On creer une liste de liste constituant la grille
 def creerGrille(taille): 
@@ -181,16 +181,23 @@ def clearGrille():
 	return grille
 
 def nextGrilleRepeat():
-	global temp
-	if temp<20:
+	temp =0
+	while temp<20:
 		temp+=1
 		nextGrille()
-		nextGrilleRepeat()
-		sleep(1)
-	else:
-		temp=0
+		sleep(0.1)
+		
 
 
+# def nextGrilleRepeat():
+# 	global temp
+# 	if temp<20:
+# 		temp+=1
+# 		nextGrille()
+# 		nextGrilleRepeat()
+# 		sleep(1)
+# 	else:
+# 		temp=0
 
 
 def clic(event):
